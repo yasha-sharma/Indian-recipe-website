@@ -1,0 +1,542 @@
+/* Basic Reset & General Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #f4f4f4;
+  position: relative; /* Needed for pseudo-element background */
+  min-height: 100vh; /* Ensures footer is at bottom on short pages */
+  display: flex;
+  flex-direction: column;
+}
+
+/* Blurred Background Image */
+body::before {
+  content: "";
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: url("images/background.jpg") no-repeat center center/cover;
+  filter: blur(8px); /* Adjust blur amount as needed */
+  -webkit-filter: blur(8px); /* Safari support */
+  z-index: -1; /* Puts the pseudo-element behind other content */
+}
+
+.container {
+  width: 90%;
+  max-width: 1200px;
+  margin: auto;
+  overflow: hidden;
+  padding: 20px 0;
+}
+
+/* Header */
+header {
+  background-color: rgba(
+    51,
+    51,
+    51,
+    0.8
+  ); /* Semi-transparent dark background */
+  color: #fff;
+  padding: 1rem 0;
+  border-bottom: 3px solid #ff6347; /* Tomato red accent */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+header h1 {
+  float: left;
+  margin-right: 20px;
+  font-size: 2em;
+}
+
+header nav {
+  float: right;
+}
+
+header ul {
+  list-style: none;
+  padding-top: 10px;
+}
+
+header ul li {
+  display: inline;
+  margin-left: 20px;
+}
+
+header ul li a {
+  color: #fff;
+  text-decoration: none;
+  font-weight: bold;
+  padding: 5px 10px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  border-radius: 5px;
+}
+
+header ul li a:hover,
+header ul li a.active {
+  background-color: #ff6347; /* Tomato red */
+  color: #fff;
+}
+
+/* Main Content */
+
+main {
+  flex: 1;
+  padding: 40px 0;
+  background-color: rgba(255, 248, 243, 0.95);
+  margin: 20px auto;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  width: 90%;
+  max-width: 1200px;
+  /* Add or ensure these lines if your 'main' uses flexbox */
+  display: flex; /* Make sure this is present if it's a flex container */
+  flex-direction: column; /* This makes children stack vertically */
+  align-items: center; /* This centers children horizontally within the main's width */
+}
+
+/* Also, ensure your specific home-page main rule overrides correctly */
+body.home-page main {
+  background-color: transparent;
+  box-shadow: none;
+  /* You might need to re-apply flex-direction: column here too if it's being overridden */
+  flex-direction: column;
+}
+
+/* Home Page Specific */
+.home-main {
+  text-align: center;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: calc(100vh - 150px); /* Adjust based on header/footer height */
+}
+
+.hero-section {
+  padding: 50px;
+  background-color: rgba(
+    255,
+    248,
+    243,
+    0.98
+  ); /* Matching light cream, slightly less transparent */
+  border-radius: 10px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  max-width: 800px;
+  margin: 0 auto;
+}
+
+.hero-section h2 {
+  color: #4caf50; /* Green accent */
+  margin-bottom: 20px;
+  font-size: 2.5em;
+}
+
+.hero-section p {
+  font-size: 1.2em;
+  line-height: 1.8;
+  margin-bottom: 30px;
+}
+
+.btn {
+  display: inline-block;
+  background-color: #ff6347; /* Tomato red */
+  color: #fff;
+  padding: 12px 25px;
+  text-decoration: none;
+  border-radius: 5px;
+  font-weight: bold;
+  transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+  background-color: #e5533d;
+}
+
+/* Recipes Page Specific */
+.recipes-main h2 {
+  text-align: center;
+  color: #4caf50;
+  margin-bottom: 40px;
+  font-size: 2.8em;
+}
+
+.recipe-category {
+  margin-bottom: 50px;
+}
+
+.recipe-category h3 {
+  text-align: center;
+  font-size: 2.2em;
+  color: #333;
+  margin-bottom: 30px;
+  padding-bottom: 10px;
+  border-bottom: 2px solid #ccc;
+  display: inline-block; /* To make border-bottom fit text */
+  width: auto;
+  margin: 0 auto 30px auto;
+  display: block;
+}
+
+.recipe-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  justify-content: center;
+}
+
+.recipe-card {
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+  text-align: center;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.recipe-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.2);
+}
+
+.recipe-card img {
+  width: 100%;
+  height: 200px; /* Fixed height for images */
+  object-fit: cover; /* Ensures images cover the area without distortion */
+  display: block;
+  border-bottom: 1px solid #eee;
+}
+
+.recipe-card h4 {
+  color: #ff6347;
+  margin: 15px 10px 10px;
+  font-size: 1.5em;
+}
+
+.recipe-card p {
+  padding: 0 15px 15px;
+  font-size: 0.95em;
+  color: #555;
+  min-height: 50px; /* Ensure consistent card height */
+}
+
+.btn-small {
+  display: inline-block;
+  background-color: #4caf50; /* Green */
+  color: #fff;
+  padding: 8px 15px;
+  text-decoration: none;
+  border-radius: 5px;
+  margin-bottom: 15px;
+  transition: background-color 0.3s ease;
+}
+
+.btn-small:hover {
+  background-color: #45a049;
+}
+
+/* Contact Page Specific */
+body.contact-page main {
+  background-color: transparent;
+  box-shadow: none;
+}
+
+.contact-form {
+  max-width: 800px; /* Increased width for a larger box */
+  width: 90%; /* Ensure it's responsive on smaller screens */
+  margin: 50px auto; /* More vertical space */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Slightly less transparent white for better readability */
+  padding: 40px; /* Increased internal padding */
+  border-radius: 15px; /* More rounded corners */
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.2); /* Deeper, more prominent shadow */
+  border: 1px solid rgba(220, 220, 220, 0.5); /* Subtle light grey border */
+  text-align: left; /* Keep text left-aligned */
+
+  /* Optional: Enhance text within the box */
+  color: #333; /* Darker text for contrast */
+  line-height: 1.6; /* Better readability for paragraphs */
+}
+
+.contact-form h2 {
+  font-size: 2.2em; /* Larger main heading */
+  color: #5a3d2b; /* A warm, inviting color */
+  margin-bottom: 20px;
+  text-align: center; /* Center the main heading */
+}
+
+.contact-form h3 {
+  font-size: 1.6em; /* Slightly larger subheading */
+  color: #6d4c41; /* A slightly darker warm color */
+  margin-top: 30px;
+  margin-bottom: 15px;
+}
+
+.contact-form p {
+  font-size: 1.1em; /* Slightly larger paragraph text */
+  margin-bottom: 10px;
+}
+
+.contact-form a {
+  color: #a0522d; /* A complementary link color */
+  text-decoration: none; /* Remove underline */
+  font-weight: bold;
+}
+
+.contact-form a:hover {
+  text-decoration: underline; /* Underline on hover */
+}
+
+.form-group {
+  margin-bottom: 20px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+  color: #333;
+}
+
+.form-group input[type="text"],
+.form-group input[type="email"],
+.form-group textarea {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  font-size: 1em;
+}
+
+.form-group textarea {
+  resize: vertical; /* Allows vertical resizing */
+}
+
+.contact-form .btn {
+  width: auto; /* Override default btn width */
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 1.1em;
+  margin-top: 10px;
+}
+
+/* Footer */
+footer {
+  background-color: rgba(51, 51, 51, 0.8);
+  color: #fff;
+  text-align: center;
+  padding: 1rem 0;
+  margin-top: auto; /* Pushes footer to the bottom */
+}
+
+/* Clearfix for floats in header */
+.container::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  header h1 {
+    float: none;
+    text-align: center;
+    margin-bottom: 10px;
+  }
+
+  header nav {
+    float: none;
+    text-align: center;
+  }
+
+  header ul {
+    padding: 0;
+  }
+
+  header ul li {
+    margin: 0 10px;
+  }
+
+  .hero-section {
+    padding: 30px;
+  }
+
+  .hero-section h2 {
+    font-size: 2em;
+  }
+
+  .recipe-grid {
+    grid-template-columns: 1fr; /* Stack cards on small screens */
+  }
+
+  .recipe-card img {
+    height: 180px;
+  }
+}
+
+/* --- Modal Styles --- */
+.modal {
+  display: none; /* Hidden by default */
+  position: fixed; /* Stay in place */
+  z-index: 1000; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgba(0, 0, 0, 0.7); /* Black w/ opacity */
+  padding-top: 60px; /* Location of the box */
+}
+
+.modal-content {
+  background-color: #fefefe;
+  margin: 5% auto; /* 5% from the top and centered */
+  padding: 30px;
+  border: 1px solid #888;
+  width: 80%; /* Could be more or less, depending on screen size */
+  max-width: 800px; /* Max width for larger screens */
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+  max-height: 80vh; /* Max height to enable scrolling within modal content */
+  overflow-y: auto; /* Enable scrolling for modal content if it overflows */
+}
+
+.close-button {
+  color: #aaa;
+  float: right;
+  font-size: 38px;
+  font-weight: bold;
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+  color: #ff6347; /* Tomato red on hover */
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-content h3 {
+  color: #4caf50;
+  text-align: center;
+  font-size: 2.5em;
+  margin-bottom: 20px;
+}
+
+.modal-recipe-img {
+  width: 100%;
+  max-height: 300px;
+  object-fit: cover;
+  border-radius: 8px;
+  margin-bottom: 25px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.modal-content h4 {
+  color: #ff6347;
+  margin-top: 20px;
+  margin-bottom: 10px;
+  font-size: 1.6em;
+}
+
+.modal-content ul,
+.modal-content ol {
+  margin-left: 25px;
+  margin-bottom: 20px;
+  font-size: 1.1em;
+}
+
+.modal-content ul li,
+.modal-content ol li {
+  margin-bottom: 8px;
+}
+
+.modal-description {
+  margin-top: 20px;
+  font-style: italic;
+  color: #666;
+  font-size: 1em;
+}
+
+/* Responsive adjustments for modal */
+@media (max-width: 768px) {
+  .modal-content {
+    width: 95%;
+    margin: 10% auto;
+    padding: 20px;
+  }
+  .close-button {
+    font-size: 30px;
+    top: 5px;
+    right: 15px;
+  }
+  .modal-content h3 {
+    font-size: 2em;
+  }
+  .modal-recipe-img {
+    max-height: 200px;
+  }
+}
+
+/* Styling for the new video section */
+
+.video-section {
+  text-align: center;
+  padding: 0; /* Changed from 60px 20px; to 0 to remove internal padding */
+  background-color: transparent; /* Changed from rgba(...) to transparent */
+  margin: 40px auto; /* Keep margin for spacing between sections, or set to 0 if you want it tighter */
+  border-radius: 0; /* Changed from 10px to 0 for no rounded corners on the container */
+  box-shadow: none; /* Removed the shadow */
+  max-width: 1000px;
+  width: 90%;
+}
+
+/* Keep these styles as they are crucial for video responsiveness and display */
+.video-section h2 {
+  font-size: 2.5em;
+  color: #5a3d2b;
+  margin-bottom: 25px;
+}
+
+.video-section p {
+  font-size: 1.1em;
+  color: #666;
+  margin-top: 20px;
+}
+
+.video-container {
+  position: relative;
+  width: 100%;
+  padding-bottom: 56.25%; /* 16:9 Aspect Ratio */
+  height: 0;
+  overflow: hidden;
+  margin: 0 auto;
+  background-color: #000; /* This is the background for the video player itself */
+  border-radius: 8px; /* The rounded corners of the actual video player */
+}
+
+.video-container video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  border-radius: 8px; /* This makes the video itself have rounded corners */
+}
